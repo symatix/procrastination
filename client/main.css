@@ -1,0 +1,379 @@
+/* CSS declarations go here */
+@font-face {
+    font-family: logo;
+    src:
+    url("/fonts/decibel.ttf");
+}
+@font-face {
+    font-family: siteLink;
+    src:
+    url("/fonts/Provokateur.otf");
+}
+@font-face {
+    font-family: headline;
+    src:
+    url("/fonts/artifact.ttf");
+}
+@font-face {
+    font-family: searchfont;
+    src:
+    url("/fonts/Provokateur.otf");
+}
+button {
+    outline: 0 !important;
+}
+.btn-large{
+	width:130px;
+}
+h2{
+    font-family: headline;
+    font-size:50px;
+    color:white;
+}
+.maxheight{
+    height:100% !important;
+    border:3px solid black;
+}
+a{
+	color: inherit;
+	text-decoration:inherit;
+}
+.landing-later:hover{
+    font-size:15px;
+    text-decoration:none !important;
+}
+.title-color{
+	color:#428bca;
+}
+.headline-font{
+	font-family:siteLink;
+}
+#title-click{
+	font-family:siteLink;
+	padding-top:8px;
+}
+#login-username-or-email-label, #login-password-label, .btn-remove, .btn-primary,.btn-danger, .btn-default, #login-buttons{
+	letter-spacing: 2px;
+	font-size:17px !important;
+	font-family:siteLink !important;
+}
+#enter-txt{
+	position:relative;
+	text-align:center;
+	margin-top:45%;
+	margin-bottom:45%;
+}
+#url, #title, #description {
+	text-align:left !important;
+	font-family:sitelink;
+}
+.form-group > .btn-primary{
+	letter-spacing: 2px;
+    font-size:17px !important;
+    font-family:siteLink !important;
+}
+.additional-link{
+	letter-spacing: 1.5px;
+    font-size:15px !important;
+    font-family:siteLink !important;
+}
+.btn-remove{
+	display:inline-block;
+}
+.form-txt{
+	color:white;
+	letter-spacing: 2px;
+    font-size:17px !important;
+    font-family:siteLink !important;
+	width:95%;
+}
+input{
+	text-align:left !important;
+}
+.login-button{
+	font-size:17px !important;
+	font-family:siteLink !important;
+}
+.additional-link-container{
+	text-align:center !important;
+}
+#signup-link{
+	float:none !important;
+}
+#forgot-password-link{
+	float:none !important;
+}
+.btn{
+	letter-spacing: 1.5px;
+}
+.logo{
+    font-family:logo;
+    font-size:35px;
+    color:gray !important;
+}
+.landing-logo{
+    font-family:logo;
+    font-size:35px;
+    color:white;
+}
+.title-logo{
+    display:inline-block;
+    width:50%;
+}
+.logo:hover{
+    color:gray !important;
+}
+.right{
+	text-align:right;
+}
+.nav-wrap{
+	background-color: black;
+	padding:5px 10px 0px 10px;
+}
+.add-web-btn{
+    display:block;
+	float:right;
+	margin:8px 15px 0px 0px;
+	height:100%;
+}
+.hidden_div{
+	display:none;
+	width:100%;
+    padding-bottom:10px;
+}
+#hidden-text{
+	opacity:0;
+}
+.center-div, #center-title{
+    text-align:center;
+    background:#428bca !important;
+    border:lightblue !important;
+    border-radius:5px;
+}
+.login-button{
+    background:#428bca !important;
+    border:lightblue !important;
+    border-radius:5px;
+}
+#login-buttons,.login-link-and-dropdown-list{
+	float:right;
+	font-size:25px;
+	margin-top:8px;
+	padding:0px 3px 5px 3px;
+	color:white !important;
+}
+#login-name-link:hover{
+	color:#d1332e !important;
+}
+.login-close-text:hover{
+	color:#d1332e !important;
+}
+.login-name-link{
+	position:relative !important;
+	width:100% !important;
+	height:100% !important;
+}
+.btn-detail{
+	display:none;
+	opacity:0;
+}
+.center-div:hover{
+    background:#004480 !important;
+}
+.center-div:active{
+    background:#d9534f !important;
+}
+.login-button:hover{
+    background:#004480 !important;
+}
+.login-button:active{
+    background:#d9534f !important;
+}
+.btn-primary{
+	background:#428bca;
+}
+.btn-primary:hover{
+    background:#004480 !important;
+}
+.btn-primary:active{
+    background:#d9534f !important;
+}
+.date-div{
+    font-size:12px;
+	text-align:right;
+}
+.css-added{
+    position:absolute;
+    top:15px;
+    right:20px;
+}
+.search-result{
+	border-bottom:1px solid lightgray;
+}
+.content-search{
+	position:relative;
+	width:100%;
+	text-align:center;
+}
+.date{
+	display:block;
+}
+.select-false{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}
+#landing-screen{
+	position:absolute;
+	height:100% !important;
+	width:100%;
+}
+.jumbotron{
+	text-align:center;
+	height:100%;
+	background-image:url('welcome.png');
+	background-size:100%;
+	background-repeat:no-repeat;
+	color:white;
+}
+#wait-screen{
+	text-align:center;
+}
+.gray-background{
+	background-color:rgba(0,0,0,0.5);
+	margin: 0 auto;
+	border:2px solid black;
+	border-radius:2px;
+}
+#screenshot{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:5px;
+	display:none;
+	color:#fff;
+	}
+.linkfont{
+    font-size:25px;
+    font-family:searchfont;
+    margin-left:25px;
+	letter-spacing: 1.5px;
+}
+.addfont{
+    font-size:17px;
+    font-family:siteLink;
+}
+.preview-div{
+	position:relative;
+	background-color:rgba(0,0,0,0.1);
+	border:1px solid lightgray;
+	border-radius:3px;
+	margin:5px 0px 5px 0px;
+	padding-top:10px;
+	height:130px;
+	overflow:hidden !important;
+}
+.preview-div:hover{
+    background:#f2f2f2;
+}
+.btn-vote{
+	opacity:0.3;
+}
+.btn-vote:hover{
+	opacity:1 !important;
+}
+.btn-collapse{
+    display:none;
+    opacity:0;
+}
+.voting{
+	width:100px;
+	border-top:1px solid gray;
+	margin-bottom:10px;
+	text-align:center;
+}
+.col-xs-4{
+    margin-top:8px;
+}
+.comments-box > h3{
+    font-family:logo;
+    font-size:15px;
+}
+.img-avatar{
+    display:none !important;
+}
+.comment-section{
+    display:none;
+    overflow:scroll;
+    overflow-x: hidden;
+    height:490px;
+    word-wrap: break-word;
+    opacity:0;
+    width:50%;
+}
+.inline{
+	display:inline-block;
+}
+.details-wrapper{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+.details-web{
+	display:inline-block;
+	width:50%;
+	height:490px;
+	text-align:center;
+	padding:10px 10px 0px 10px;
+}
+.details-web-border{
+	border:none;
+	display:none;
+	opacity:0;
+	position:relative;
+	width:100%;
+	height:100%;
+}
+.preview-buttons{
+	float:right;
+}
+.btn-other{
+    display:block !important;
+    opacity:1 !important;
+}
+.js-remove-web, .js-details{
+	margin-right:20px;
+}
+#searchInput{
+	font-family:searchfont;
+	text-align:center !important;
+	width:600px;
+	border:none;
+	border-bottom:1px solid lightgray;
+	font-size:35px;
+}
+#searchInput:focus{
+	outline:none;
+}
+input {
+	text-align: center;
+	font-family: siteLink;
+	font-weight:bold;
+}
+::-webkit-input-placeholder {
+	color: lightgrey;
+}
+:-moz-placeholder { /* Firefox 18- */
+	color: lightgrey;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+	color: lightgrey;
+}
+:-ms-input-placeholder {
+	color: lightgrey;
+}
+.border{
+	border:1px solid black;
+}

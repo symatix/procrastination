@@ -1,0 +1,240 @@
+<head>
+  <title>procrastiNation</title>
+</head>
+
+<body>
+
+</body>
+
+    <template name="global_template">
+        {{> yield "navbar"}}
+        {{> yield "search"}}
+        {{> yield "main"}}
+    </template>
+
+<!-- welcome template -->
+<template name="welcome">
+    <div class="container" id="landing-screen">
+        <div class="jumbotron">
+			<div class="gray-background">
+				<h3 style="font-family:siteLink;"><span style="font-size:40px;">Welcome</span> to the growing comunity of <h1 class="landing-logo">procrastinators</h1></h3>
+				<p><i style="font-family:siteLink;">where all pointless pointing of pointers serve a higher meaning.</i></p>
+				<p style="font-family:siteLink;color:lightgrey;">current population : {{userCount}}</p>
+				<a href="/procrastination" class="btn btn-primary btn-large" id="btn-enter">ENTER</a>
+				<span style="font-family:siteLink;font-size:15px;"> or do it </span><a  class="btn btn-primary btn-large" style="margin-bottom:10px;margin-top:5px;" href="/wait" id="btn-leave">later</a>.
+			</div>
+        </div>
+    </div>
+</template>
+
+<template name="wait">
+	<div class="container">
+		<div class="row">
+			<div id="wait-screen">
+				<h2 id="center-title">Are you done?</h2>
+				<p id="hidden-text"><i>...one meaningful click later..</i></p>
+				<a href="/procrastination" class="btn btn-primary btn-yes"><div id="enter-txt">Yes</div></a>
+				<a class="btn btn-danger" id="js-btn-no"><div id="enter-txt">No</div></a>
+
+			</div>
+		</div>
+	</div>
+</template>
+
+	<!-- navbar  - you will be putting the login functions here -->
+<template name="navbar">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="row nav-wrap">
+                <div class="title-logo">
+                  <p class="logo"><span class="headline-font">procrastiNation :</span>
+                    <span style="font-size:smaller;color:white;">population
+                      <span style="color:#d9534f">{{userCount}}</span>
+                    </span>
+                  </p>
+                </div>
+				{{> loginButtons align="right"}}
+				{{#if currentUser}}
+					{{> website_form}}
+				{{/if}}
+           	</div>
+        </nav>
+          <div class="row">
+            <div class="center-div">
+                <h2 class="select-false" id="title-click">it's just a click</h2>
+            </div>
+            <p class="title right" style="color:black;">
+              <i>....and people have clicked it</i>
+              <span  style="text-decoration:underline">{{counter}}</span>
+              <i>times</i>
+            </p>
+          </div>
+        </div>
+</template>
+<!---search box template-->
+<template name="search_box">
+  <div class="container">
+    <div class="row">
+      {{> searchBox}}
+    </div>
+  </div>
+</template>
+
+<!-- add website form -->
+<template name="website_form">
+            <div class="add-web-btn">
+                <a class="btn btn-primary js-toggle-website-form" href="#">
+                    <span class="addfont">add a website</span>
+                </a>
+            </div>
+            <div id="website_form" class="hidden_div">
+                <form class="js-save-website-form">
+                  <div class="form-group">
+                    <label for="url" class="form-txt">Site address</label>
+                    <input type="text" class="form-control" id="url" placeholder="http://www.just-copy-paste-it.com">
+                  </div>
+                  <div class="form-group">
+                    <label for="title" class="form-txt">Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="this too">
+                  </div>
+                    <div class="form-group">
+                    <label for="description" class="form-txt">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="less is more">
+                  </div>
+
+                  <button type="submit" class="btn btn-danger addfont">Submit</button>
+                </form>
+            </div>
+</template>
+
+<!-- template that displays several website items -->
+<template name="website_list">
+    <div class="container">
+        <div class="row" id="content">
+          {{#each websites}}
+          <span id="#web_item{{_id}}">
+            {{> website_item}}
+          </span>
+          {{/each}}
+        </div>
+
+    </div>
+</template>
+
+<!-- template that displays individual website entries -->
+<template name="website_item">
+  <div id="{{_id}}-info">
+    <div class="row preview-div" id="{{_id}}">
+  		<div class="col-xs-7">
+  			<p class="js-preview title-color"><a href="{{url}}" target="_blank" class="screenshot linkfont"><span style="font-size:20px">#</span>{{title}}</a></p>
+  			<div>
+  				- <i>{{description}}</i>
+  			</div>
+  			{{#if currentUser}}
+    			<div class="voting">
+    				<img class="js-upvote btn-vote" id="like{{_id}}" src="/like.png" alt="liked"/>
+					<span id="js-upVote{{_id}}">+{{upVote}}</span>
+    				<img class="js-downvote btn-vote" id="dislike{{_id}}" src="/dislike.png" alt="disliked"/>
+            		<span id="js-downVote{{_id}}">{{downVote}}</span>
+    			</div>
+  			{{/if}}
+  		</div>
+  		<div class="col-xs-5 css-added">
+		<div class="date-div">
+		  <div class="do-me-right">
+			  <div class="date">
+				<p><i><b>added&nbsp;by: </b>{{addedBy}}</i><i><b> date: </b>{{createdOn}}</i></p>
+			  </div>
+			  <div class="btn-position">
+				  {{# if currentUser}}
+				<button class="btn btn-remove btn-detail btn-other preview-buttons js-report-broken">report a link</button>
+				  {{/if}}
+				<div class="details-hover-div">
+					<button class="add-detail btn btn-primary preview-buttons btn-detail js-details" id="detail-{{_id}}">details
+					</button>
+				</div>
+			  </div>
+			  {{#if userSite}}
+				<button class="btn btn-danger btn-remove preview-buttons btn-detail btn-other js-remove-web">remove</button><br>
+			  {{/if}}
+	   		</div>
+	   	</div>
+  	  </div>
+      <div class="row-float">
+		  <!-- comment div -->
+		  <div class="col-xs-12 col-sm-6 comment-section inline" id="comment-{{_id}}" onclick="event.stopPropagation();">
+			  {{> commentsBox id=_id content=strings}}
+		  </div>
+		  <div class="col-xs-12 col-sm-6 details-web">
+			<div class="details-wrapper">
+				<iframe src="" class="details-web-border" id="detail-view-{{_id}}">
+				</iframe>
+			</div>
+		  </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- comment templates -->
+<template name="myComments">
+    <ul>
+        {{#each comment}}
+            ...
+            <li>{{content}}</li>
+            ...
+        {{/each}}
+    </ul>
+</template>
+
+<template name="myLoading">
+    <div class="loading-spinner"></div>
+</template>
+
+<template name="post">
+    {{> commentsBox
+        id=post._id
+        boxTemplate="myComments"
+    }}
+</template><!-- /comment templates -->
+
+
+<template name="searchBox">
+	<span id="search-box">
+    <div class="content-search">
+	    {{> EasySearch.Input index=WebpagesIndex attributes=insertId}}
+    </div>
+        {{#EasySearch.Each index=WebpagesIndex }}
+          <a href="#{{_id}}-info">
+            {{#if keypressed}}
+              {{>website_search_item}}
+            {{/if}}
+          </a>
+        {{/EasySearch.Each}}
+  </span>
+</template>
+
+
+<template name="website_search_item">
+  <div class="row search-result">
+    <div class="col-xs-3">
+      <p class="js-preview title-color"><a href="#{{_id}}-info" target="_blank" class="screenshot linkfont">{{title}}</a></p>
+    </div>
+    <div class="col-xs-7 search-description">
+      - <i>{{description}}</i>
+    </div>
+    <div class="col-xs-2">
+      <span class="linkfont">
+        by:
+        <span style="color:#d9534f">
+          {{username}}
+        </span>
+    </span>
+    </div>
+  </div>
+</template>
+
+<template name="details_temp">
+  <iframe src="{{url}}" class="details-web-border">
+  </iframe>
+</template>
