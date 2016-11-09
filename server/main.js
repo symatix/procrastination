@@ -10,15 +10,31 @@ if(Meteor.isClient){
 
 Meteor.startup(() => {
   // code to run on server at startup
-
+    
+    if ( Meteor.users.find().count() === 0 ) {
+    Accounts.createUser({
+        username: 'admin',
+        email: 'pockshocks@email.com',
+        password: '123QWe',
+        profile: {
+            first_name: 'dino',
+            last_name: 'kraljeta',
+            company: 'push.IT',
+        }
+    });
+        console.log("welcome, admin")
+}
+    var user = Meteor.users.find().fetch()[0]._id;
+    
 	if (!Websites.findOne()){
-	console.log("No websites yet. Creating starter data.");
+	console.log("- building DB for first boot");
 	 Websites.insert({
 		title:"Procrastination population",
 		url:"#",
 		description:"it begins here",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0,
 		 loggedCount:0
@@ -29,6 +45,7 @@ Meteor.startup(() => {
 		description:"reviews of classic books, culled from the internet's think tank",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -38,6 +55,7 @@ Meteor.startup(() => {
 		description:"it's easy during procrastination to fall into a click hole",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -47,6 +65,7 @@ Meteor.startup(() => {
 		description:"popular search engine.",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -56,6 +75,7 @@ Meteor.startup(() => {
 		description:"the title says it all",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -65,6 +85,7 @@ Meteor.startup(() => {
 		description:"look at that real estate, just look at it..",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -74,6 +95,7 @@ Meteor.startup(() => {
 		description:"point a coursor somewhere and you will not be alone",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -83,6 +105,7 @@ Meteor.startup(() => {
 		description:"internet without cats is no internet at all, now look at them jump",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -92,6 +115,7 @@ Meteor.startup(() => {
 		description:"for the lolz",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -101,6 +125,7 @@ Meteor.startup(() => {
 		description:"leonardo got an oscar, but cage remains",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -110,6 +135,7 @@ Meteor.startup(() => {
 		description:"instant gratification",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0
 	});
@@ -119,6 +145,7 @@ Meteor.startup(() => {
 		description:"well? is it, or is it not?",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0,
 	});
@@ -128,6 +155,7 @@ Meteor.startup(() => {
 		description:"e-mails from an a-hole",
 		createdOn:new Date().toLocaleString().split('T')[0],
 		user:"admin",
+        addedBy:user,
         upVote:0,
         downVote:0,
 	});
@@ -141,4 +169,15 @@ Meteor.startup(() => {
 			login:0
         });
     }
+    Meteor.methods({
+    getMeta: function(url) {
+        this.unblock();
+        try {
+            return HTTP.get(url, {npmRequestOptions: {gzip: true}});
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    }
+});
 });

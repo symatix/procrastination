@@ -377,3 +377,44 @@ input {
 .border{
 	border:1px solid black;
 }
+
+/*
+
+		"submit .js-save-website-form":function(event){
+            if (Meteor.user()){
+                var url = event.target.url.value;
+                var title = event.target.title.value;
+                var description = event.target.description.value;
+                var userId = Meteor.user()._id;
+                var user = Meteor.users.findOne({"_id":userId}).username;
+                url = url.startsWith('http://') ? url : 'http://' + url;  
+                console.log(url);
+                Meteor.call('getMeta', url, function(err, resp) {
+                if (err) {
+                    alert(err);
+                    return false;
+                }
+                if (!resp) {
+                    alert(`your url is bad, and you should feel bad [${url}]!`);
+                    return false;
+                }    
+                 Websites.insert({
+                     url:url,
+                     title:title,
+                     description:description,
+                     createdOn: new Date().toLocaleString().split('T')[0],
+                     addedBy:userId,
+                     user:user,
+                     upVote:0,
+                     downVote:0
+                 });
+                alert("effort well wasted");
+             });
+            }
+            $("#website_form").hide('slow');
+			var url = event.target.url.value;
+			console.log("I hope the "+url+" is valid...");
+			return false;// stop the form submit from reloading the page
+		}
+	});
+*/

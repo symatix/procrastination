@@ -25,5 +25,6 @@ accounts-password
 session
 iron:router
 arkham:comments-ui
-autopublish
 easy:search
+http
+autopublish

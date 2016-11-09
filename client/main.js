@@ -256,32 +256,46 @@ $(window).scroll(function(){
 	Template.website_form.events({
 		"click .js-toggle-website-form":function(event){
 			$("#website_form").toggle('slow');
-		},
-		"submit .js-save-website-form":function(event){
-            var url = event.target.url.value;
-            var title = event.target.title.value;
-            var description = event.target.description.value;
-            var userId = Meteor.user()._id;
-            var user = Meteor.users.findOne({"_id":userId}).username;
-            if (Meteor.user()){
-                 Websites.insert({
-                     url:url,
-                     title:title,
-                     description:description,
-                     createdOn: new Date().toLocaleString().split('T')[0],
-                     addedBy:userId,
-                     user:user,
-                     upVote:0,
-                     downVote:0
-                 });
-                alert("effort well wasted");
-             }
-            $("#website_form").hide('slow');
-			var url = event.target.url.value;
-			console.log("I hope the "+url+" is valid...");
-			return false;// stop the form submit from reloading the page
-		}
-	});
+		}, 
+	"submit .js-save-website-form":function(event){
+		
+		// here is an example of how to get the url out of the form:
+		var url = event.target.url.value;
+		
+		url = url.startsWith('http://')   ? url : 'http://' + url;
+		
+		Meteor.call('getMeta', url, function(err, resp) {
+			if (err) {
+                alert(err);
+				return false;
+			}
+			
+			if (!resp) {
+				alert(`your site [${url}] is bad and you should feel bad - admin`);
+				return false;
+			}
+			console.log(url);
+			var doc = $(resp.content);
+			var title = doc.filter('title').text();
+			var desc = event.target.description.value;
+			//  put your website saving code in here!	
+			Websites.insert({
+				title : title,
+				url : url,
+				description : desc,
+				createdOn : new Date(),
+				createdBy: Meteor.user()._id,
+				up: 0,
+				down: 0
+			});
+			console.log("site added to DB")
+			alert(`site [${url}] seems to check out, thanx - admin`);
+			event.target.url.value = '';
+		});
+
+		return false;// stop the form submit from reloading the page
+	}
+});
 
 
 	Template.navbar.events({
