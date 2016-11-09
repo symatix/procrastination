@@ -180,9 +180,10 @@ $(window).scroll(function(){
         "click .add-detail":function(event){
           var webId = this._id;
           var url = Websites.findOne({"_id":webId}).url;
+		  var urlProxy = "https://www.google.com/search?q=%"+url+"&btnI=Im+Feeling+Lucky"; // or will not load on https://
           var toggle = $("#detail-view-"+webId).css("opacity");
           if(toggle != 1){
-              $("#detail-view-"+webId).attr("src",url);
+              $("#detail-view-"+webId).attr("src",urlProxy);
               $("#detail-view-"+webId).animate({"opacity":1},200);
               $("#detail-view-"+webId).css({"display":"block"});
             } else {
