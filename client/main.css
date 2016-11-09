@@ -173,10 +173,12 @@ input{
 	width:100% !important;
 	height:100% !important;
 }
+/*
 .btn-detail{
 	display:none;
 	opacity:0;
 }
+*/
 .center-div:hover{
     background:#004480 !important;
 }

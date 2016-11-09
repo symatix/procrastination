@@ -160,15 +160,15 @@ $(window).scroll(function(){
             } else if (divHeight == "130px"){
                 $("#"+webId).animate({"height":"600px"}, 500);
                 $("#comment-"+webId).css({"display":"block"});
-                $("#detail-"+webId).css({"display":"block"});
-                $("#detail-"+webId).animate({"opacity":1},100);
+                //$("#detail-"+webId).css({"display":"block"});
+                //$("#detail-"+webId).animate({"opacity":1},100);
                 $("#comment-"+webId).animate({"opacity":"1"}, 650, function(){
                     $("#"+webId).css({"overflow-y":"scroll"});
                 });
             }  else {
                 $("#"+webId).css({"overflow-y":"hidden"});
-                $("#detail-"+webId).animate({"opacity":0},100);
-                $("#detail-"+webId).css({"display":"none"});
+                //$("#detail-"+webId).animate({"opacity":0},100);
+                //$("#detail-"+webId).css({"display":"none"});
 				$("#detail-view-"+webId).animate({"opacity":0},100);
 				$("#detail-view-"+webId).css({"display":"none"});
                 $("#comment-"+webId).animate({"opacity":"0"}, 450, function(){
@@ -180,13 +180,20 @@ $(window).scroll(function(){
         "click .add-detail":function(event){
           var webId = this._id;
           var url = Websites.findOne({"_id":webId}).url;
-		  var urlProxy = "https://www.google.com/search?q=%"+url+"&btnI=Im+Feeling+Lucky"; // or will not load on https://
-          var toggle = $("#detail-view-"+webId).css("opacity");
-          if(toggle != 1){
-              $("#detail-view-"+webId).attr("src",urlProxy);
+		  //var urlProxy = "https://www.google.com/search?q=%"+url+"&btnI=Im+Feeling+Lucky"; - use when on https or will not load http
+          var divHeight = $("#"+webId).css("height");
+          if(divHeight == "130px"){
+                $("#"+webId).animate({"height":"600px"}, 500);
+              $("#detail-view-"+webId).attr("src",url);
+			  $("#comment-"+webId).css({"display":"block"});
+			  $("#comment-"+webId).animate({"opacity":"1"}, 650, function(){
+				$("#"+webId).css({"overflow-y":"scroll"});
+			  });
               $("#detail-view-"+webId).animate({"opacity":1},200);
               $("#detail-view-"+webId).css({"display":"block"});
             } else {
+				
+              $("#detail-view-"+webId).attr("src","#");
               $("#detail-view-"+webId).animate({"opacity":0},100);
               $("#detail-view-"+webId).css({"display":"none"});
             }
@@ -284,10 +291,10 @@ $(window).scroll(function(){
 				title : title,
 				url : url,
 				description : desc,
-				createdOn : new Date(),
+				createdOn : new Date().toLocaleString().split('T')[0],
 				createdBy: Meteor.user()._id,
-				up: 0,
-				down: 0
+				upVote: 0,
+				downVote: 0
 			});
 			console.log("site added to DB")
 			alert(`site [${url}] seems to check out, thanx - admin`);
