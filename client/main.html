@@ -125,12 +125,29 @@
   			<div>
   				- <i>{{description}}</i>
   			</div>
+				{{#if currentUser}}
+			    <div class="voting">
+    				<img class="js-upvote btn-vote" id="like{{_id}}" src="/like.png" alt="liked"/>
+					<span id="js-upVote{{_id}}">+{{upVote}}</span>
+    				<img class="js-downvote btn-vote" id="dislike{{_id}}" src="/dislike.png" alt="disliked"/>
+            		<span id="js-downVote{{_id}}">{{downVote}}</span>
+    			</div>
+				{{else}}
+			    <div class="voting voting-disable">
+    				<img id="like{{_id}}" src="/like.png" alt="liked"/>
+					<span id="js-upVote{{_id}}">+{{upVote}}</span>
+    				<img id="dislike{{_id}}" src="/dislike.png" alt="disliked"/>
+            		<span id="js-downVote{{_id}}">{{downVote}}</span>
+    			</div>
+				{{/if}}
+			<!--
     			<div class="voting">
     				<img class="{{#if currentUser}}js-upvote btn-vote{{/if}}" id="like{{_id}}" src="/like.png" alt="liked"/>
 					<span id="js-upVote{{_id}}">+{{upVote}}</span>
     				<img class="{{#if currentUser}}js-downvote btn-vote{{/if}}" id="dislike{{_id}}" src="/dislike.png" alt="disliked"/>
             		<span id="js-downVote{{_id}}">{{downVote}}</span>
     			</div>
+			-->
   		</div>
   		<div class="col-xs-5 css-added">
 		<div class="date-div">

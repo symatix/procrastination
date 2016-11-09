@@ -173,12 +173,9 @@ input{
 	width:100% !important;
 	height:100% !important;
 }
-/*
-.btn-detail{
-	display:none;
-	opacity:0;
+.voting-disable{
+	opacity:0.5;
 }
-*/
 .center-div:hover{
     background:#004480 !important;
 }
