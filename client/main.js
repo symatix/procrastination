@@ -305,7 +305,7 @@ $(window).scroll(function(){
 			alert(`site [${url}] seems to check out, thanx - admin`);
 			event.target.url.value = '';
 		});
-
+		$("#website_form").hide('slow');
 		return false;// stop the form submit from reloading the page
 	}
 });
