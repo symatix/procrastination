@@ -182,16 +182,21 @@ $(window).scroll(function(){
           var url = Websites.findOne({"_id":webId}).url;
 		  //var urlProxy = "https://www.google.com/search?q=%"+url+"&btnI=Im+Feeling+Lucky"; - use when on https or will not load http
           var divHeight = $("#"+webId).css("height");
+          var iframe = $("#detail-view-"+webId).css("opacity");
           if(divHeight == "130px"){
-                $("#"+webId).animate({"height":"600px"}, 500);
               $("#detail-view-"+webId).attr("src",url);
+              $("#"+webId).animate({"height":"600px"}, 500);
 			  $("#comment-"+webId).css({"display":"block"});
 			  $("#comment-"+webId).animate({"opacity":"1"}, 650, function(){
 				$("#"+webId).css({"overflow-y":"scroll"});
 			  });
               $("#detail-view-"+webId).animate({"opacity":1},200);
               $("#detail-view-"+webId).css({"display":"block"});
-            } else {
+            } else if (iframe == 0) {
+              $("#detail-view-"+webId).attr("src",url);
+              $("#detail-view-"+webId).animate({"opacity":1},200);
+              $("#detail-view-"+webId).css({"display":"block"});
+			} else {
 				
               $("#detail-view-"+webId).attr("src","#");
               $("#detail-view-"+webId).animate({"opacity":0},100);
