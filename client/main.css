@@ -293,6 +293,9 @@ input{
 	margin-bottom:10px;
 	text-align:center;
 }
+.closer-up{
+    margin-top:-10px;
+}
 .col-xs-4{
     margin-top:8px;
 }

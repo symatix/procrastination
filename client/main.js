@@ -1,9 +1,16 @@
+  Meteor.subscribe("websites");
+  Meteor.subscribe("counter");
+  Meteor.subscribe("votes");
+
+
 var toggle = 0;
 // routing
 Router.configure({layoutTemplate:'global_template'});
 
 Router.route('/', function () {
-    this.render('welcome', {to:"main"});
+    this.render('navbar', {to:"navbar"});
+    this.render('search_box', {to:"search"});
+    this.render('website_list', {to:"main"});
 });
 
 Router.route('/procrastination', function () {
